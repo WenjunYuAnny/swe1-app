@@ -24,9 +24,11 @@ class QuestionModelTests(TestCase):
         recent_question = Question(pub_date=time)
         self.assertIs(recent_question.was_published_recently(), True)
 
+
 def create_question(question_text, days):
     time = timezone.now() + datetime.timedelta(days=days)
     return Question.objects.create(question_text=question_text, pub_date=time)
+
 
 class QuestionIndexViewTests(TestCase):
     def test_no_questions(self):
@@ -48,5 +50,3 @@ class QuestionIndexViewTests(TestCase):
         response = self.client.get(reverse("polls:index"))
         self.assertContains(response, "No polls are available")
         self.assertQuerySetEqual(response.context["latest_question_list"], [])
-
-    
