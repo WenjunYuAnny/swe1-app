@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.9"
+  - "3.8"
 
 before_install:
   - pip install --upgrade pip>23.2
@@ -13,3 +13,6 @@ script:
   - black --check .
   - flake8 .
   - coverage run --source=mysite,polls manage.py test
+
+after_script:
+  - coveralls
