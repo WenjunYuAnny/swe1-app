@@ -7,7 +7,6 @@ install:
   
 
 script:
-  - python -m unittest discover
   - black --check .
   - flake8 .
   - coverage run --source=mysite,polls manage.py test
