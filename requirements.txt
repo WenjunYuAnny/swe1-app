@@ -1,4 +1,5 @@
 pip>23.2
+sqlite>=3.21
 Django>=4.2
 black==22.10.0
 coverage==6.5.0
