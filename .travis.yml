@@ -25,3 +25,5 @@ deploy:
   app: "mysite"
   env: "diango-env"
   bucket_name: "elasticbeanstalk-us-east-1-420169502545"
+  on:
+    branch: main
