@@ -4,14 +4,13 @@ python:
 
 before_install:
   - pip install --upgrade pip>23.2
-  - curl -L https://github.com/coverallsapp/coverage-reporter/releases/latest/download/coveralls-windows.exe -o coveralls.exe
+  - curl -L https://coveralls.io/coveralls-linux.tar.gz | tar -xz -C $HOME
+    export PATH=$PATH:$HOME
+
 
 install:
   - pip install -r requirements.txt
   
-before_script:
-  - chmod +x coveralls.exe
-
 script:
   - black --check .
   - flake8 .
@@ -19,7 +18,7 @@ script:
   - coverage xml -o coverage.xml
 
 after_script:
-  - ./coveralls.exe --xml coverage.xml
+  - coveralls --xml coverage.xml
 
 deploy:
   provider: elasticbeanstalk
