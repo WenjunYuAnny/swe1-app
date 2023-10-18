@@ -26,9 +26,9 @@ class QuestionModelTests(TestCase):
         self.assertIs(recent_question.was_published_recently(), True)
 
 
-class PlasceholderTests(TestCase):
-    def test_always_true(self):
-        return True
+# class PlasceholderTests(TestCase):
+#     def test_always_true(self):
+#         return True
 
 
 def create_question(question_text, days):
