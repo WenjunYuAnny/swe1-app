@@ -1,22 +1,23 @@
 language: python
+dist: bionic
+os: linux
 python:
-  - "3.8"
+  - "3.10"
 
 before_install:
   - pip install --upgrade pip>23.2
-  - curl -L https://coveralls.io/coveralls-linux.tar.gz | tar -xz
 
 install:
   - pip install -r requirements.txt
   
 script:
-  - black --check .
-  - flake8 .
-  - coverage run --source=mysite,polls manage.py test
-  - coverage-lcov -o lcov.info
+  - python manage.py test
+  - python -m black --check .
+  - python -m flake8 .
+  - python -m coverage run manage.py test
   
 after_script:
-  - coveralls -l ./lcov.info
+  - coveralls
 
 deploy:
   provider: elasticbeanstalk
