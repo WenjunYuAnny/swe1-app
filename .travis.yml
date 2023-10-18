@@ -4,19 +4,19 @@ python:
 
 before_install:
   - pip install --upgrade pip>23.2
+  - curl -L https://coveralls.io/coveralls-linux.tar.gz | tar -xz
 
 install:
   - pip install -r requirements.txt
-  - pip install coverage-lcov
   
 script:
   - black --check .
   - flake8 .
   - coverage run --source=mysite,polls manage.py test
-  - coverage-lcov lcov.info
+  - coverage-lcov -o lcov.info
   
 after_script:
-  - npx coverallsuniversalreporter -l lcov -f ./lcov.info -n
+  - coveralls -l ./lcov.info
 
 deploy:
   provider: elasticbeanstalk
