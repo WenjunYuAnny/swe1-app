@@ -17,7 +17,7 @@ script:
   - coverage xml -o coverage.xml
 
 after_script:
-  - coveralls --xml coverage.xml
+  - coveralls report
 
 deploy:
   provider: elasticbeanstalk
