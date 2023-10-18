@@ -4,8 +4,6 @@ python:
 
 before_install:
   - pip install --upgrade pip>23.2
-  - curl -L https://coveralls.io/coveralls-linux.tar.gz | tar -xz
-
 
 install:
   - pip install -r requirements.txt
@@ -14,10 +12,9 @@ script:
   - black --check .
   - flake8 .
   - coverage run --source=mysite,polls manage.py test
-  - coverage xml -o coverage.xml
-
+  
 after_script:
-  - coveralls report
+  - coveralls
 
 deploy:
   provider: elasticbeanstalk
